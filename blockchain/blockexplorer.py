@@ -6,7 +6,7 @@ at https://blockchain.info/api/blockchain_api
 from . import util
 import json
 from enum import Enum
-
+from six import string_types
 
 def get_block(block_id, api_code=None):
     """Get a single block based on a block hash.
@@ -124,7 +124,7 @@ def get_multi_address(addresses, filter=None, limit=None, offset=None, api_code=
     :return: an instance of :class:`MultiAddress` class
     """
 
-    if isinstance(addresses, basestring):
+    if isinstance(addresses, string_types):
         resource = 'multiaddr?active=' + addresses
     else:
         resource = 'multiaddr?active=' + '|'.join(addresses)
@@ -153,7 +153,7 @@ def get_balance(addresses, filter=None, api_code=None):
     :return: a dictionary of str, :class:`Balance`
     """
 
-    if isinstance(addresses, basestring):
+    if isinstance(addresses, string_types):
         resource = 'balance?active=' + addresses
     else:
         resource = 'balance?active=' + '|'.join(addresses)
@@ -180,7 +180,7 @@ def get_unspent_outputs(addresses, confirmations=None, limit=None, api_code=None
     :return: an array of :class:`UnspentOutput` objects
     """
 
-    if isinstance(addresses, basestring):
+    if isinstance(addresses, string_types):
         resource = 'unspent?active=' + addresses
     else:
         resource = 'unspent?active=' + '|'.join(addresses)
